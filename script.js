@@ -35,13 +35,13 @@ function generatePassword() {
     confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
 
     
-    //
+    //prompts wheter to include lowercase, uppercase, numbers, or special characters in password
     var lowercase = confirm("Do you want to include lowercases?");
     var uppercase = confirm("Do you want to include uppercase?");
     var numeric = confirm("Do you want to include numeric?");
     var specialCharacters = confirm("Do you want to include special characters?");
 
-    ``
+    
 
 }
 
