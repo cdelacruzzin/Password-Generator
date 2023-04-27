@@ -28,7 +28,18 @@ function generatePassword() {
     let passwordLength = prompt("Enter a number between 8 and 128.");
     
     //passes the value of the input to the passLength function
-    console.log(passLength(passwordLength));
+
+
+    let charType = confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nuppercase\nuppercase")
+
+    let lowercase = confirm("Do you want to include lowercases?");
+    if(lowercase === null)
+    {
+        lowercase = false;
+    } else{
+        lowercase = true;
+    }
+    console.log(lowercase)
 
 
 }
@@ -43,5 +54,5 @@ function passLength(pass) {
     }
     pass = parseInt(pass);
 return pass;
-
 }
+
