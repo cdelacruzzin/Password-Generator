@@ -28,19 +28,20 @@ function generatePassword() {
     let passwordLength = prompt("Enter a number between 8 and 128.");
     
     //passes the value of the input to the passLength function
+    passwordLength = passLength(passwordLength);
+    console.log(passwordLength);
 
 
-    let charType = confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nuppercase\nuppercase")
+    confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
 
-    let lowercase = confirm("Do you want to include lowercases?");
-    if(lowercase === null)
-    {
-        lowercase = false;
-    } else{
-        lowercase = true;
-    }
-    console.log(lowercase)
+    
+    //
+    var lowercase = confirm("Do you want to include lowercases?");
+    var uppercase = confirm("Do you want to include uppercase?");
+    var numeric = confirm("Do you want to include numeric?");
+    var specialCharacters = confirm("Do you want to include special characters?");
 
+    ``
 
 }
 
@@ -49,7 +50,7 @@ function passLength(pass) {
     //after it passes the loops conditions, the input will be parsed into a number. 
     //prompts return a string, therefore this string needs to be turned into a number.
 
-    while ( isNaN(parseInt(pass)) || (pass < 8) || (pass > 128) ) {
+    while ( isNaN(parseInt(pass)) || ( (pass < 8) || (pass > 128) )) {
         pass = prompt("Invalid input! Please enter a number between 8 and 128:");
     }
     pass = parseInt(pass);
