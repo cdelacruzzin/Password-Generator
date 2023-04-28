@@ -143,29 +143,20 @@ function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, speci
 
    
     randomizedCharacters(criteriaArray);
-     generatePass();
+      generatePass(passwordLength);
 }
 
 
 function randomizedCharacters(criteriaArray){
-    for(var a = 0; a < criteriaArray.length; a++)
-    {
-        console.log(criteriaArray[a]);
-    }
     var randomNum =  Math.floor(Math.random() * criteriaArray.length);
     console.log('char: ', criteriaArray[randomNum]);
+    
+    return criteriaArray[randomNum]
 }
 
-// function generatePass(criteriaArray) {
-
-
-//     var randomizedCriteria = Math.floor(Math.random() * criteriaCount);
-//     var password = "";
-//     for (var a = 0; a < passwordLength; a++) {
-        
-//          console.log('random character: ', criteriaArray[randomizedCriteria]);
-//          password += criteriaArray[randomizedCriteria];
-//         console.log(password);
-//     }
-
-// }
+function generatePass(passwordLength) {
+    var password = "";
+    for (var a = 0; a < passwordLength; a++) {
+        password += randomizedCharacters();
+    }
+}
