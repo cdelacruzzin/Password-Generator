@@ -47,6 +47,7 @@ function generatePassword() {
 
     //computes the length of the number of criteria selected.\
     //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
+    //an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
     var criteriaCount = 4;
     var criteriaArray = [];
 
@@ -59,31 +60,19 @@ function generatePassword() {
     if (uppercase == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(lowercase());
+        criteriaArray.push(uppercase());
     }
     if (numeric == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(lowercase());
+        criteriaArray.push(randomInt());
     }
 
     if (specialCharacters == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(lowercase());
+        criteriaArray.push(specialChar());
     }
-
-
-    console.log(criteriaCount);
-
-
-    // let's say i have an array "myStudents", i don't know how nig this array is in the beginning.
-    //and an array of names {carlos, alex, sam}
-    //if carlos, and sam are my students, I will add them to my students array. 
-    //so myStudents.length should be 2. 
-
-
-
 
 }
 
@@ -122,14 +111,12 @@ function randomInt() {
 //a function that returns a random letter in lowercase
 function lowercase() {
     var letters = "abcdefghijklmnopqrstuvwxyz";
-    var random = math.floor(math.random() * letters.length);
+    var random = Math.floor(Math.random() * letters.length);
     return letters[random];
 }
 
 
 //a function that returns a random letter in uppercase
 function uppercase() {
-    var letters = "abcdefghijklmnopqrstuvwxyz";
-    var random = math.floor(math.random() * letters.length);
-    return letters[random];
+    return lowercase().toUpperCase();
 }
