@@ -28,8 +28,8 @@ function passLength(pass) {
     while (isNaN(parseInt(pass)) || ((pass < 8) || (pass > 128))) {
         pass = prompt("Invalid input! Please enter a number between 8 and 128:");
     }
-    pass = parseInt(pass);
-    return pass;
+    passwordLength = parseInt(pass);
+    return passwordLength;
 }
 
 //a function to return a random special character
@@ -78,12 +78,12 @@ function uppercase() {
 function prompts() {
     let criteria = confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
 
-    //stores the prompt input into 'passwordLength
-    let passwordLength = prompt("Enter a number between 8 and 128.");
+    //stores the prompt input into 'inputLength
+    let inputLength = prompt("Enter a number between 8 and 128.");
 
     //passes the value of the input to the passLength function
-    passwordLength = passLength(passwordLength);
-    console.log(passwordLength);
+    inputLength = passLength(inputLength);
+    console.log(inputLength);
 
 
     confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
@@ -104,11 +104,11 @@ function prompts() {
 
 }
 
-
-function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt){
     //computes the length of the number of criteria selected.\
     //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
     //an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
+function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt){
+
     var criteriaCount = 4;
     var criteriaArray = [];
 
@@ -134,9 +134,7 @@ function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, speci
     } else {
         criteriaArray.push(specialChar());
     }
-
-    for (var a = 0; a < criteriaArray.length; a++) {
-        console.log(criteriaArray[a]);
-
-    }
+}
+function generatePass(){
+    
 }
