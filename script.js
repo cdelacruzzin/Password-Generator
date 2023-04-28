@@ -9,7 +9,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-     var password = prompts();
+    var password = prompts();
     var passwordText = document.querySelector("#password");
 
     passwordText.value = password;
@@ -20,16 +20,20 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function passLength(pass) {
+
+
+
+var passwordLength;
+
+function passLength(inputLength) {
     //checks whether password length is within the parameters, and is a number, and loops the prompt if it isn't
     //after it passes the loops conditions, the input will be parsed into a number. 
     //prompts return a string, therefore this string needs to be turned into a number.
 
-    while (isNaN(parseInt(pass)) || ((pass < 8) || (pass > 128))) {
-        pass = prompt("Invalid input! Please enter a number between 8 and 128:");
+    while (isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
+        inputLength = prompt("Invalid input! Please enter a number between 8 and 128:");
     }
-    passwordLength = parseInt(pass);
-    return passwordLength;
+    passwordLength = parseInt(inputLength);
 }
 
 //a function to return a random special character
@@ -83,7 +87,7 @@ function prompts() {
 
     //passes the value of the input to the passLength function
     passLength(inputLength);
-    console.log(inputLength);
+    console.log(passwordLength);
 
 
     confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
@@ -91,11 +95,8 @@ function prompts() {
 
     //prompts wheter to include lowercase, uppercase, numbers, or special characters in password
     var lowercasePrompt = confirm("Do you want to include lowercases?");
-
     var uppercasePrompt = confirm("Do you want to include uppercase?");
-
     var numericPrompt = confirm("Do you want to include numeric?");
-
     var specialCharactersPrompt = confirm("Do you want to include special characters?");
 
     generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt);
@@ -104,15 +105,15 @@ function prompts() {
 
 }
 
-    //computes the length of the number of criteria selected.\
-    //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
-    //an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
-    //creates a criteriacount variable to be global so it can be accessible by other functions
-    // calls the generatePass function, and passes the criteriaArray to it.
-    
+//computes the length of the number of criteria selected.\
+//there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
+//an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
+//creates a criteriacount variable to be global so it can be accessible by other functions
+// calls the generatePass function, and passes the criteriaArray to it.
 
-    var criteriaCount = 4;
-function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt){
+
+var criteriaCount = 4;
+function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt) {
 
 
     var criteriaArray = [];
@@ -142,11 +143,18 @@ function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, speci
 
     generatePass(criteriaArray);
 }
-function generatePass(criteriaArray){
+
+
+function generatePass(criteriaArray) {
     console.log(criteriaCount);
 
-    for(var a=0; a<criteriaArray.length;a++){
-        console.log('hello',criteriaArray[a]);
+    for (var a = 0; a < criteriaArray.length; a++) {
+        console.log('hello', criteriaArray[a]);
+    }
+
+    var randomizedCriteria = Math.floor(Math.random() * criteriaCount);
+    for (var a = 0; a < passwordLength; a++) {
+        console.table('random character: ', criteriaArray[randomizedCriteria]);
     }
 
 }
