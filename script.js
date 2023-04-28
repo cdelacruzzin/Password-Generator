@@ -37,11 +37,34 @@ function generatePassword() {
     
     //prompts wheter to include lowercase, uppercase, numbers, or special characters in password
     var lowercase = confirm("Do you want to include lowercases?");
+
     var uppercase = confirm("Do you want to include uppercase?");
+
     var numeric = confirm("Do you want to include numeric?");
+
     var specialCharacters = confirm("Do you want to include special characters?");
 
-    
+
+    //computes the length of the number of criteria selected.\
+    //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
+    var criteriaCount = 4;
+    if(lowercase == false){
+        criteriaCount--;
+    }
+    if(uppercase == false){
+        criteriaCount--;
+    }
+    if(numeric == false){
+        criteriaCount--;
+    }
+    if(specialCharacters == false){
+        criteriaCount--;
+    }
+    console.log(criteriaCount);
+
+
+
+
 
 }
 
@@ -57,3 +80,20 @@ function passLength(pass) {
 return pass;
 }
 
+//a function to return a random special character
+function specialChar(){
+    var specChar = [ '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=', '[', ']', '{', '}', '|', ';', ':', ',', '.', '<', '>', '?'];
+
+    //to generate a random number between 0 and the length of specChar,
+    // use the math.random, and to round it down so it doesn't be over the length, math.floor is used.
+    //sets the special character at the index randomly generated, and returns it.
+    var random = Math.floor(math.random() * specChar.length);
+    var randomOutput = specChar[random];
+
+    return randomOutput;
+
+}
+
+function se(){
+
+}
