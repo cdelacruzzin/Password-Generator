@@ -87,7 +87,7 @@ function prompts() {
 
     //passes the value of the input to the passLength function
     passLength(inputLength);
-    console.log(passwordLength);
+    console.log('password length: ', passwordLength);
 
 
     confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
@@ -141,20 +141,31 @@ function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, speci
         criteriaArray.push(specialChar());
     }
 
-    generatePass(criteriaArray);
+   
+    randomizedCharacters(criteriaArray);
+     generatePass();
 }
 
 
-function generatePass(criteriaArray) {
-    console.log(criteriaCount);
-
-    for (var a = 0; a < criteriaArray.length; a++) {
-        console.log('hello', criteriaArray[a]);
+function randomizedCharacters(criteriaArray){
+    for(var a = 0; a < criteriaArray.length; a++)
+    {
+        console.log(criteriaArray[a]);
     }
-
-    var randomizedCriteria = Math.floor(Math.random() * criteriaCount);
-    for (var a = 0; a < passwordLength; a++) {
-        console.table('random character: ', criteriaArray[randomizedCriteria]);
-    }
-
+    var randomNum =  Math.floor(Math.random() * criteriaArray.length);
+    console.log('char: ', criteriaArray[randomNum]);
 }
+
+// function generatePass(criteriaArray) {
+
+
+//     var randomizedCriteria = Math.floor(Math.random() * criteriaCount);
+//     var password = "";
+//     for (var a = 0; a < passwordLength; a++) {
+        
+//          console.log('random character: ', criteriaArray[randomizedCriteria]);
+//          password += criteriaArray[randomizedCriteria];
+//         console.log(password);
+//     }
+
+// }
