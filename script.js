@@ -82,7 +82,7 @@ function prompts() {
     let inputLength = prompt("Enter a number between 8 and 128.");
 
     //passes the value of the input to the passLength function
-    inputLength = passLength(inputLength);
+    passLength(inputLength);
     console.log(inputLength);
 
 
@@ -107,9 +107,14 @@ function prompts() {
     //computes the length of the number of criteria selected.\
     //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
     //an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
-function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt){
+    //creates a criteriacount variable to be global so it can be accessible by other functions
+    // calls the generatePass function, and passes the criteriaArray to it.
+    
 
     var criteriaCount = 4;
+function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt){
+
+
     var criteriaArray = [];
 
     if (lowercasePrompt == false) {
@@ -134,7 +139,14 @@ function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, speci
     } else {
         criteriaArray.push(specialChar());
     }
+
+    generatePass(criteriaArray);
 }
-function generatePass(){
-    
+function generatePass(criteriaArray){
+    console.log(criteriaCount);
+
+    for(var a=0; a<criteriaArray.length;a++){
+        console.log('hello',criteriaArray[a]);
+    }
+
 }
