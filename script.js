@@ -95,7 +95,7 @@ function specialChar() {
     //to generate a random number between 0 and the length of specChar,
     // use the math.random, and to round it down so it doesn't be over the length, math.floor is used.
     //sets the special character at the index randomly generated, and returns it.
-    var random = Math.floor(math.random() * specChar.length);
+    var random = Math.floor(Math.random() * specChar.length);
 
     return specChar[random];
 
@@ -103,7 +103,7 @@ function specialChar() {
 
 //a function to return an integer less than 10
 function randomInt() {
-    var output = math.floor(math.random() * 11);
+    var output = Math.floor(Math.random() * 11);
     return output;
 }
 
