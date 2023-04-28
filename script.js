@@ -128,4 +128,6 @@ function lowercase() {
 //a function that returns a random letter in uppercase
 function uppercase() {
     var letters = "abcdefghijklmnopqrstuvwxyz";
+    var random = math.floor(math.random() * letters.length);
+    return letters[random];
 }
