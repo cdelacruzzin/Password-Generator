@@ -112,8 +112,10 @@ function specialChar() {
 
 }
 
+//a function to return an integer less than 10
 function randomInt() {
-
+    var output = math.floor(math.random() * 11);
+    return output;
 }
 
 
