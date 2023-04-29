@@ -123,25 +123,22 @@ function generateCriteria() {
     if (lowercasePrompt == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(lowercase());
+        criteriaArray.push();
     }
     if (uppercasePrompt == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(uppercase());
+        criteriaArray.push();
     }
     if (numericPrompt == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(randomInt());
+        criteriaArray.push();
     }
     if (specialCharactersPrompt == false) {
         criteriaCount--;
     } else {
-        criteriaArray.push(specialChar());
-    }
-    for (var a = 0; a < criteriaCount; a++) {
-        console.log("char: ", criteriaArray[a]);
+        criteriaArray.push();
     }
 
     console.log("criteria count: ", criteriaCount);
