@@ -30,16 +30,14 @@ function passLength(inputLength) {
 }
 
 //a function to return a random special character
+//to generate a random number between 0 and the length of specChar,
+// use the math.random, and to round it down so it doesn't be over the length, math.floor is used.
+//sets the special character at the index randomly generated, and returns it.
+
 function specialChar() {
-    var specChar = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-', '=', '[', ']', '{', '}', '|', ';', ':', ',', '.', '<', '>', '?'];
-
-    //to generate a random number between 0 and the length of specChar,
-    // use the math.random, and to round it down so it doesn't be over the length, math.floor is used.
-    //sets the special character at the index randomly generated, and returns it.
+    var specChar = "!@#$%^&*()_+-=[]{}|\;:,.<>?";
     var random = Math.floor(Math.random() * specChar.length);
-
     return specChar[random];
-
 }
 
 //a function to return an integer less than 10
@@ -80,6 +78,7 @@ function prompt1() {
 
     //calls the criteria prompts function
     criteriaPrompts();
+
 }
 
 
@@ -98,6 +97,7 @@ function criteriaPrompts() {
     //once the values of the prompts store in the global variable, we will call the generateCriteria function
     generateCriteria();
     generatePass();
+    console.log(generatePass());
 
 
 }
@@ -111,14 +111,12 @@ function criteriaPrompts() {
 
 //computes the length of the number of criteria selected.\
 //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
-//cr
 //an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
 //creates a criteriacount variable to be global so it can be accessible by other functions
 
 var criteriaArray = [];
 var criteriaCount = 4;
 function generateCriteria() {
-
     console.log("lowercasePrompt", lowercasePrompt, "uppercasePrompt", uppercasePrompt, "numericPrompt", numericPrompt, "specialCharactersPrompt", specialCharactersPrompt);
 
 
@@ -150,13 +148,37 @@ function generateCriteria() {
     randomizedCharacters();
 }
 
+
+
+//updates array with randomly generated characters
+function updateArray() {
+    if (lowercasePrompt == true) {
+        criteriaArray[0] = lowercase();
+    }
+    if (uppercasePrompt == true) {
+        criteriaArray[1] = uppercase();
+    }
+    if (numericPrompt == true) {
+        criteriaArray[2] = randomInt();
+    }
+    if (specialCharactersPrompt == true) {
+        criteriaArray[3] = specialChar();
+    }
+}
+
+
+
+
+
+
+
 //generates a random nuumber between 0 and the criteria count. This randomly selects character from the selected criteria
 //assigns the value of the randomly generated index of the criteriaArray to passchar
 //returns passchar when this function is called
 function randomizedCharacters() {
 
     var randomNum = Math.floor(Math.random() * criteriaCount);
-   var passchar = criteriaArray[randomNum];
+    var passchar = criteriaArray[randomNum];
     return passchar;
 
 }
@@ -167,8 +189,9 @@ function randomizedCharacters() {
 function generatePass() {
     var generatedpassword = "";
     console.log("password length: ", passwordLength);
-    for (var a = 0; a < passwordLength ; a++) {
+    for (var a = 0; a < passwordLength; a++) {
         generatedpassword += randomizedCharacters();
+        generateCriteria();
     }
     return generatedpassword;
 }
