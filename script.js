@@ -111,7 +111,7 @@ function criteriaPrompts() {
 
 //computes the length of the number of criteria selected.\
 //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
-//an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
+//an array 'criteria array' is created, and if true, the array's length will increase
 //creates a criteriacount variable to be global so it can be accessible by other functions
 
 var criteriaArray = [];
@@ -142,53 +142,60 @@ function generateCriteria() {
     }
 
     console.log("criteria count: ", criteriaCount);
-    randomizedCharacters();
+    updateArray();
 }
 
 
 
+
+//[ lowercase, uppercase, randomint, spec-char] = [ t, f, t, f ]
+// [ lowercase , randomint ]
 //updates array with randomly generated characters
+
 function updateArray() {
-    if (lowercasePrompt == true) {
-        criteriaArray[0] = lowercase();
+
+    for (var a = 0; a < 4; a++) {
+        if (lowercasePrompt == true) {
+            criteriaArray[a] = lowercase();
+
+        } else if (lowercasePrompt == true) {
+            criteriaArray[a] = uppercase();
+
+        } else if (lowercasePrompt == true) {
+            criteriaArray[a] = randomInt();
+
+        } else if (lowercasePrompt == true) {
+            criteriaArray[a] = specialChar();
+        }
     }
-    if (uppercasePrompt == true) {
-        criteriaArray[1] = uppercase();
+
+
+
+
+
+
+
+    //generates a random nuumber between 0 and the criteria count. This randomly selects character from the selected criteria
+    //assigns the value of the randomly generated index of the criteriaArray to passchar
+    //returns passchar when this function is called
+    function randomizedCharacters() {
+
+        var randomNum = Math.floor(Math.random() * criteriaCount);
+        var passchar = criteriaArray[randomNum];
+        return passchar;
+
     }
-    if (numericPrompt == true) {
-        criteriaArray[2] = randomInt();
+    // creates a for-loop with the passwordLength as the number of iterations. this password length was calculated from the passLength() function
+    //in each iteration of the loop, the randomizedCharacters() function will be called. this function will return a randomly generated char based on the criteria selected.
+    //it will concatenate each returned character, and assign it to 'generatepassword' variable.
+    //returns generatedpassword
+    function generatePass() {
+        var generatedpassword = "";
+        console.log("password length: ", passwordLength);
+        for (var a = 0; a < passwordLength; a++) {
+            generatedpassword += updateArray();
+            generateCriteria();
+        }
+        return generatedpassword;
     }
-    if (specialCharactersPrompt == true) {
-        criteriaArray[3] = specialChar();
-    }
-}
-
-
-
-
-
-
-
-//generates a random nuumber between 0 and the criteria count. This randomly selects character from the selected criteria
-//assigns the value of the randomly generated index of the criteriaArray to passchar
-//returns passchar when this function is called
-function randomizedCharacters() {
-
-    var randomNum = Math.floor(Math.random() * criteriaCount);
-    var passchar = criteriaArray[randomNum];
-    return passchar;
-
-}
-// creates a for-loop with the passwordLength as the number of iterations. this password length was calculated from the passLength() function
-//in each iteration of the loop, the randomizedCharacters() function will be called. this function will return a randomly generated char based on the criteria selected.
-//it will concatenate each returned character, and assign it to 'generatepassword' variable.
-//returns generatedpassword
-function generatePass() {
-    var generatedpassword = "";
-    console.log("password length: ", passwordLength);
-    for (var a = 0; a < passwordLength; a++) {
-        generatedpassword += randomizedCharacters();
-        generateCriteria();
-    }
-    return generatedpassword;
 }
