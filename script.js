@@ -1,29 +1,22 @@
 
-
-
-
-
-
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-    var a = prompts();
+    var a = prompt1();
     var passwordText = document.querySelector("#password");
 
     passwordText.value = a;
-
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
-
-
 var passwordLength;
+
+
 
 function passLength(inputLength) {
     //checks whether password length is within the parameters, and is a number, and loops the prompt if it isn't
@@ -75,7 +68,7 @@ var uppercasePrompt = true;
 var numericPrompt = true;
 var specialCharactersPrompt = true;
 
-function prompts() {
+function prompt1() {
     let criteria = confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
 
     //stores the prompt input into 'inputLength
@@ -85,9 +78,15 @@ function prompts() {
     passLength(inputLength);
     console.log('password length: ', passwordLength);
 
+    //calls the criteria prompts function
+    criteriaPrompts();
+}
+
+
+
+function criteriaPrompts() {
 
     confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
-
 
     //prompts wheter to include lowercase, uppercase, numbers, or special characters in password
     lowercasePrompt = confirm("Do you want to include lowercases?");
@@ -95,22 +94,29 @@ function prompts() {
     numericPrompt = confirm("Do you want to include numeric?");
     specialCharactersPrompt = confirm("Do you want to include special characters?");
 
-    //calls the generateCriteria function
-    generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt);
 
-
-
+   //once the values of the prompts store in the global variable, we will call the generateCriteria function
+    generateCriteria();
 
 }
+
+
+
+
+
+
+
 
 //computes the length of the number of criteria selected.\
 //there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
 //an array 'criteria array' is created, and if true, the array's length will increase, and the the corresponding function call will be added on the array index
 //creates a criteriacount variable to be global so it can be accessible by other functions
 
+var criteriaArray = [];
 var criteriaCount = 4;
-function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt) {
-    var criteriaArray = [];
+function generateCriteria() {
+
+    console.log("lowercasePrompt", lowercasePrompt, "uppercasePrompt", uppercasePrompt, "numericPrompt", numericPrompt, "specialCharactersPrompt", specialCharactersPrompt);
 
     if (lowercasePrompt == false) {
         criteriaCount--;
@@ -133,29 +139,30 @@ function generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, speci
         criteriaArray.push(specialChar());
     }
     for (var a = 0; a < criteriaCount; a++) {
-        console.log("lase: ", criteriaArray[a]);
+        console.log("char: ", criteriaArray[a]);
     }
 
-    randomizedCharacters(criteriaArray);
+    console.log(criteriaCount);
+    randomizedCharacters();
 }
 
 
-function randomizedCharacters(criteriaArray) {
-    var randomNum = Math.floor(Math.random() * criteriaCount)
-    var password = "";
+function randomizedCharacters() {
+    // console.log(criteriaArray.length);
+    var randomNum = Math.floor(Math.random() * criteriaCount);
+    console.log("rand: ", randomNum);
+    // var password = "";
 
-    password = criteriaArray[randomNum];
-    console.log("random char: ", password);
-    generatePass(passwordLength);
-    return x;
+    // password = criteriaArray[randomNum];
+    // console.log("random char: ", password);
+  
+    // return x;
 }
 
 function generatePass(passwordLength) {
-    var password = "";
+    var generatedpassword = "";
     console.log(passwordLength);
     for (var a = 0; a < passwordLength; a++) {
-        generateCriteria(lowercasePrompt, uppercasePrompt, numericPrompt, specialCharactersPrompt);
-        password += randomizedCharacters();
-        console.log(passwordLength);
+        generatedpassword += randomizedCharacters();
     }
 }
