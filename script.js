@@ -23,7 +23,16 @@ function passLength(inputLength) {
     while (isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
         inputLength = prompt("Invalid input! Please enter a number between 8 and 128:");
     }
-    passwordLength = parseInt(inputLength);
+
+    // while (isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
+    //     prompt1();
+    // }
+    // return parseInt(inputLength);
+
+// if(isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
+//     console.log(inputLength);
+// }
+    passwordLength =  parseInt(inputLength);
 }
 
 //a function to return a random special character
