@@ -2,15 +2,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword() {
-    prompt1();
-}
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", prompt1);
 
 var passwordLength;
+//made these global so it can be accessed by other functions
+var lowercasePrompt = false;
+var uppercasePrompt = false;
+var numericPrompt = false;
+var specialCharactersPrompt = false;
+var criteriaArray = [];
+
 
 function passLength(inputLength) {
     //checks whether password length is within the parameters, and is a number, and loops the prompt if it isn't
@@ -49,13 +52,12 @@ function uppercase() {
     return lowercase().toUpperCase();
 }
 
-//made these global so it can be accessed by other functions
-var lowercasePrompt = false;
-var uppercasePrompt = false;
-var numericPrompt = false;
-var specialCharactersPrompt = false;
+
+
+
 
 function prompt1() {
+
     confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
 
     //stores the prompt input into 'inputLength
@@ -67,7 +69,10 @@ function prompt1() {
 
     //calls the criteria prompts function
     criteriaPrompts();
-
+    generateCriteria();
+    randomizedCharacters();
+    generatePass();
+    reset();
 
 }
 
@@ -85,26 +90,19 @@ function criteriaPrompts() {
 
 
     //once the values of the prompts store in the global variable, we will call the generateCriteria function
-    generateCriteria();
-    generatePass();
-
-
 
 }
 
 
 
-//computes the length of the number of criteria selected.\
-//there are 4 criteria, it will decrease by 1 if 'cancel' button is clicked. 
+//computes the length of the number of criteria selected.
 //an array 'criteria array' is created, and if true, the array's length will increase
 //creates a criteriacount variable to be global so it can be accessible by other functions
 
 
 
-var criteriaArray = [];
-var criteriaCount = 4;
 function generateCriteria() {
-    console.log("lowercasePrompt", lowercasePrompt, "uppercasePrompt", uppercasePrompt, "numericPrompt", numericPrompt, "specialCharactersPrompt", specialCharactersPrompt);
+    console.log("lowercasePrompt: ", lowercasePrompt, "uppercasePrompt: ", uppercasePrompt, "numericPrompt: ", numericPrompt, "specialCharactersPrompt: ", specialCharactersPrompt);
 
     if (lowercasePrompt) {
         criteriaArray.push(lowercase());
@@ -118,11 +116,25 @@ function generateCriteria() {
     if (specialCharactersPrompt) {
         criteriaArray.push(specialChar());
     }
-
     console.log("criteria array: ", criteriaArray);
-    randomizedCharacters();
 }
 
+
+function checkCriteria() {
+
+    if (lowercasePrompt) {
+
+    }
+    if (uppercasePrompt) {
+
+    }
+    if (numericPrompt) {
+        
+    }
+    if (specialCharactersPrompt) {
+
+    }
+}
 
 
 //generates a random nuumber between 0 and the criteria count. This randomly selects character from the selected criteria
@@ -130,27 +142,40 @@ function generateCriteria() {
 //returns passchar when this function is called
 function randomizedCharacters() {
 
-    var randomNum = Math.floor(Math.random() * criteriaArray.length);
+    var randomNum = Math.floor(Math.random() * this.criteriaArray.length);
     var passchar = criteriaArray[randomNum];
+    console.log("criteria length: ", this.criteriaArray.length)
+    console.log("rand: ", randomNum);
     return passchar;
 
 }
+
 // creates a for-loop with the passwordLength as the number of iterations. this password length was calculated from the passLength() function
 //in each iteration of the loop, the randomizedCharacters() function will be called. this function will return a randomly generated char based on the criteria selected.
 //it will concatenate each returned character, and assign it to 'generatepassword' variable.
 //returns generatedpassword
+
 function generatePass() {
     var generatedpassword = "";
-
     var passwordText = document.querySelector("#password");
 
     console.log("password length: ", passwordLength);
     for (var a = 0; a < passwordLength; a++) {
         generatedpassword += randomizedCharacters();
+
+        //make another function similar to generateCriteria, but instead of pushing a new element, it will only check the values
         generateCriteria();
         console.log("hi ", a);
     }
 
     passwordText.value = generatedpassword;
 
+
+}
+
+
+//the array does not reset after pressing the 'generate password" button. 
+//it still uses the random generated characters from the previous run.
+function reset() {
+    console.log("ending criteria: ", criteriaArray);
 }
