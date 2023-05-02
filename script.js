@@ -31,7 +31,7 @@ function passLength(inputLength) {
 
 
 
-    passwordLength =  parseInt(inputLength);
+    passwordLength = parseInt(inputLength);
 }
 
 //a function to return a random special character
@@ -65,27 +65,24 @@ function uppercase() {
 
 function prompt1() {
     var criteriaArray = [];
-   var start =  confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
-   console.log(start)
-   if (start)
-   {
+    var start = confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
+    console.log(start)
+    if (start) {
         //stores the prompt input into 'inputLength
-    let inputLength = prompt("Enter a number between 8 and 128.");
+        let inputLength = prompt("Enter a number between 8 and 128.");
 
-    if(isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))){
-        window.alert("wrong!");
-    } else {
-           //passes the value of the input to the passLength function
-    passLength(inputLength);
-    console.log('password length: ', passwordLength);
+        if (!(isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128)))) {
+                        //passes the value of the input to the passLength function
+            passLength(inputLength);
+            console.log('password length: ', passwordLength);
 
-    //calls the criteria prompts function
-    criteriaPrompts();
-    generatePass(criteriaArray);
+            //calls the criteria prompts function
+            criteriaPrompts();
+            generatePass(criteriaArray);
+        } 
+
+
     }
-
- 
-   }
 
 
 
@@ -115,7 +112,7 @@ function criteriaPrompts() {
 //creates a criteriacount variable to be global so it can be accessible by other functions
 
 function generateCriteria(criteriaArray) {
-    
+
     if (lowercasePrompt) {
         criteriaArray.push(lowercase());
     }
@@ -128,7 +125,7 @@ function generateCriteria(criteriaArray) {
     if (specialCharactersPrompt) {
         criteriaArray.push(specialChar());
     }
-  
+
 }
 
 
