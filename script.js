@@ -12,7 +12,7 @@ var lowercasePrompt = false;
 var uppercasePrompt = false;
 var numericPrompt = false;
 var specialCharactersPrompt = false;
-var criteriaArray = [];
+
 
 
 function passLength(inputLength) {
@@ -55,12 +55,13 @@ function uppercase() {
 
 
 
-
 function prompt1() {
-
-    confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
-
-    //stores the prompt input into 'inputLength
+    var criteriaArray = [];
+   var start =  confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
+   console.log(start)
+   if (start)
+   {
+        //stores the prompt input into 'inputLength
     let inputLength = prompt("Enter a number between 8 and 128.");
 
     //passes the value of the input to the passLength function
@@ -69,10 +70,10 @@ function prompt1() {
 
     //calls the criteria prompts function
     criteriaPrompts();
-    generateCriteria();
-    randomizedCharacters();
-    generatePass();
-    reset();
+    generatePass(criteriaArray);
+   }
+
+
 
 }
 
@@ -99,11 +100,8 @@ function criteriaPrompts() {
 //an array 'criteria array' is created, and if true, the array's length will increase
 //creates a criteriacount variable to be global so it can be accessible by other functions
 
-
-
-function generateCriteria() {
-    console.log("lowercasePrompt: ", lowercasePrompt, "uppercasePrompt: ", uppercasePrompt, "numericPrompt: ", numericPrompt, "specialCharactersPrompt: ", specialCharactersPrompt);
-
+function generateCriteria(criteriaArray) {
+    
     if (lowercasePrompt) {
         criteriaArray.push(lowercase());
     }
@@ -116,7 +114,7 @@ function generateCriteria() {
     if (specialCharactersPrompt) {
         criteriaArray.push(specialChar());
     }
-    console.log("criteria array: ", criteriaArray);
+  
 }
 
 
@@ -129,23 +127,23 @@ function checkCriteria() {
 
     }
     if (numericPrompt) {
-        
+
     }
     if (specialCharactersPrompt) {
 
     }
 }
 
+// [] BRACKETS
+// () PARENTHESIS
+// {} BRACES
 
 //generates a random nuumber between 0 and the criteria count. This randomly selects character from the selected criteria
 //assigns the value of the randomly generated index of the criteriaArray to passchar
 //returns passchar when this function is called
-function randomizedCharacters() {
-
-    var randomNum = Math.floor(Math.random() * this.criteriaArray.length);
+function randomizedCharacters(criteriaArray) {
+    var randomNum = Math.floor(Math.random() * criteriaArray.length);
     var passchar = criteriaArray[randomNum];
-    console.log("criteria length: ", this.criteriaArray.length)
-    console.log("rand: ", randomNum);
     return passchar;
 
 }
@@ -155,27 +153,18 @@ function randomizedCharacters() {
 //it will concatenate each returned character, and assign it to 'generatepassword' variable.
 //returns generatedpassword
 
-function generatePass() {
+function generatePass(array) {
     var generatedpassword = "";
     var passwordText = document.querySelector("#password");
 
     console.log("password length: ", passwordLength);
     for (var a = 0; a < passwordLength; a++) {
-        generatedpassword += randomizedCharacters();
 
-        //make another function similar to generateCriteria, but instead of pushing a new element, it will only check the values
-        generateCriteria();
-        console.log("hi ", a);
+        generateCriteria(array);
+        generatedpassword += randomizedCharacters(array);
     }
 
     passwordText.value = generatedpassword;
 
 
-}
-
-
-//the array does not reset after pressing the 'generate password" button. 
-//it still uses the random generated characters from the previous run.
-function reset() {
-    console.log("ending criteria: ", criteriaArray);
 }
