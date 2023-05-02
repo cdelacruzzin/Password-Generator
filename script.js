@@ -20,18 +20,17 @@ function passLength(inputLength) {
     //after it passes the loops conditions, the input will be parsed into a number. 
     //prompts return a string, therefore this string needs to be turned into a number.
 
-    while (isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
-        inputLength = prompt("Invalid input! Please enter a number between 8 and 128:");
-    }
-
     // while (isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
-    //     prompt1();
+    //     inputLength = prompt("Invalid input! Please enter a number between 8 and 128:");
     // }
-    // return parseInt(inputLength);
 
-// if(isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
-//     console.log(inputLength);
-// }
+
+
+
+
+
+
+
     passwordLength =  parseInt(inputLength);
 }
 
@@ -73,13 +72,19 @@ function prompt1() {
         //stores the prompt input into 'inputLength
     let inputLength = prompt("Enter a number between 8 and 128.");
 
-    //passes the value of the input to the passLength function
+    if(isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))){
+        window.alert("wrong!");
+    } else {
+           //passes the value of the input to the passLength function
     passLength(inputLength);
     console.log('password length: ', passwordLength);
 
     //calls the criteria prompts function
     criteriaPrompts();
     generatePass(criteriaArray);
+    }
+
+ 
    }
 
 
