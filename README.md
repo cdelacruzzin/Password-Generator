@@ -4,6 +4,11 @@
 
 This project is to use Javascript to generate a random number. When the page is loaded, there is a 'generate password' button. When use clicks that button, several prompts asking for the password length, and certain criterias the user wants to include in the password. If the user chooses to cancel at anytime, the function ends, and will be back to the initial starting page. After the user inputs the criteria they want for the password, a random password with the selected criteria will appear on the screen.
 
+
+reployed link: https://cdelacruzzin.github.io/Password-Generator/
+preview:
+![preview:](images/preview.PNG)
+
 ## Installation
 N/A
 
