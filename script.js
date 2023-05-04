@@ -16,21 +16,6 @@ var specialCharactersPrompt = false;
 
 
 function passLength(inputLength) {
-    //checks whether password length is within the parameters, and is a number, and loops the prompt if it isn't
-    //after it passes the loops conditions, the input will be parsed into a number. 
-    //prompts return a string, therefore this string needs to be turned into a number.
-
-    // while (isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128))) {
-    //     inputLength = prompt("Invalid input! Please enter a number between 8 and 128:");
-    // }
-
-
-
-
-
-
-
-
     passwordLength = parseInt(inputLength);
 }
 
@@ -64,13 +49,15 @@ function uppercase() {
 
 
 function prompt1() {
-    var criteriaArray = [];
+    
     var start = confirm("Here is a list of criteria to include in the password: \n -Length\n-Character Types\n\nPress OK to confim");
     console.log(start)
     if (start) {
         //stores the prompt input into 'inputLength
         let inputLength = prompt("Enter a number between 8 and 128.");
 
+
+            //checks whether password length is within the parameters, and is a number, and loops the prompt if it isn't
         if (!(isNaN(parseInt(inputLength)) || ((inputLength < 8) || (inputLength > 128)))) {
                         //passes the value of the input to the passLength function
             passLength(inputLength);
@@ -78,8 +65,9 @@ function prompt1() {
 
             //calls the criteria prompts function
             criteriaPrompts();
-            generatePass(criteriaArray);
-        } 
+        } else {
+            window.alert('Please enter a valid number.');
+        }
 
 
     }
@@ -91,17 +79,20 @@ function prompt1() {
 
 
 function criteriaPrompts() {
+        //prompts wheter to include lowercase, uppercase, numbers, or special characters in password
+    //once the values of the prompts store in the global variable, we will call the generateCriteria function
 
-    confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
+    var criteriaArray = [];
 
-    //prompts wheter to include lowercase, uppercase, numbers, or special characters in password
-    lowercasePrompt = confirm("Do you want to include lowercases?");
+  var confirmVal=  confirm("Here is a list of possible character types to include in your password:\nlowercase\nuppercase\nnumeric\nspecial characters")
+  if (confirmVal){
+        lowercasePrompt = confirm("Do you want to include lowercases?");
     uppercasePrompt = confirm("Do you want to include uppercase?");
     numericPrompt = confirm("Do you want to include numeric?");
     specialCharactersPrompt = confirm("Do you want to include special characters?");
+    generatePass(criteriaArray);
+  }
 
-
-    //once the values of the prompts store in the global variable, we will call the generateCriteria function
 
 }
 
@@ -124,6 +115,8 @@ function generateCriteria(criteriaArray) {
     }
     if (specialCharactersPrompt) {
         criteriaArray.push(specialChar());
+    } else {
+       
     }
 
 }
@@ -172,10 +165,8 @@ function generatePass(array) {
     for (var a = 0; a < passwordLength; a++) {
 
         generateCriteria(array);
-        generatedpassword += randomizedCharacters(array);
+
+            generatedpassword += randomizedCharacters(array);
     }
-
     passwordText.value = generatedpassword;
-
-
 }
